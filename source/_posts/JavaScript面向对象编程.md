@@ -3,6 +3,7 @@ title: JavaScript面向对象编程
 date: 2016-05-11 11:05:20
 comments: true 
 categories: JavaScript
+toc: true
 ---
 
 ## this
@@ -26,19 +27,19 @@ javascript规定，每一个构造函数都有一个prototype属性，指向另�
 
 ## 对于对象常用的操作
 
-### 1、constructor
+### constructor
 每一个对象都会自动包含一个constructor属性，指向他们的构造函数。obj.constructor == Object
-### 2、instanceof
+### instanceof
 用于验证原型对象与实例对象之间的关系 obj  instanceof Object
 
-### 3、isPrototypeOf 
+### isPrototypeOf 
 判断某个prototype对象和某个实例之间的关系 Object.prototype.isPrototypeOf(obj)
 
-### 4、hasOwnProperty
+### hasOwnProperty
 用于判断某一个属性到底是本地属性，还是继承自prototype对象的属性  obj.hasOwnProerty("name")
 
 
- ### 5、in
+ ### in
 某个实例是否含有某个属性，不管是不是本地属性。 “name” in Obj
 in运算符还可以用来遍历某个对象的所有属性
 ```javascript
