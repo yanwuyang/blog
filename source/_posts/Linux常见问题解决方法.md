@@ -1,5 +1,8 @@
 ---
 title: Linux常见问题解决方法
+date: 2016-05-10 20:05:33 
+comments: true 
+categories: Linux
 ---
 
 ### 使用SSH登陆Linux的时候提示

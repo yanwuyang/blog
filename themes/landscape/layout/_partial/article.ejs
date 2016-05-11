@@ -33,7 +33,7 @@
   <% if (!index){ %>
     <%- partial('post/nav') %>
   <% } %>
-  <% if (!index){ %>
+  <% if (!index && post.comments){ %>
   <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="<%= post._id %>" data-title="<%=post.title%>" data-url="<%- post.permalink %>"></div>
 	<!-- 多说评论框 end -->

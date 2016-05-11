@@ -1,5 +1,8 @@
 ---
 title: System.setOut
+date: 2016-05-10 20:10:33 
+comments: true 
+categories: Java
 ---
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天一同事问我System.out.println()输出的内容为什么没有输出到日志文件中。他告诉我的是他使用的weblogic中间件。说起这个真的平时没太注意。因为我之前一直使用的是jboss，查看日志也是看的jboss日志文件，通过System.out.println输出的内容也显示在了日志文件中。带着好奇心去看了下自己系统下的日志文件果然没有。于是打开jboss的log4j.xml 与自己系统下的log4j.xml进行了一下对比发现并无不同。于是打开jboss代码看了下发现jboss org.jboss.logging.Log4jService  installSystemAdapters方法中对System.setOut 有设置。
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表示对于System.setOut不懂到网上百度了下，官方说明是通过System.setOut方法允许程序员自行定义System.out输出流， 我们可以将我们改造好的PrintStream替换java原来的System.out对象。于是他这个问题就很好解决了。
