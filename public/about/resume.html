@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html class="ie7" lang="zh"><![endif]-->
+<!--[if gt IE 7]><!-->
+<html lang="zh">
+<!--<![endif]-->
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="stylesheets/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="content">
+  <div class="wrapper"  id="wrapper" style="overflow:hidden;">
+    <div class="light"><i></i></div>
+    <hr class="line-left">
+    <hr class="line-right">
+    <div class="main">
+      <h1 class="title">工作履历日志</h1>
+      <div class="year">
+        <h2><a href="#">2016年<i></i></a></h2>
+        <div class="list">
+          <ul>
+            <li class="cls">
+              <p class="date">1月~</p>
+              <p class="intro">U费控开放</p>
+              <p class="version">&nbsp;</p>
+			  <div class="more">
+                <p>搭建项目开发框架，提供各种组件实现，负责具体模块的实现</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="year">
+        <h2><a href="#">2015年<i></i></a></h2>
+        <div class="list">
+          <ul>
+          	<li class="cls">
+              <p class="date">10月~12月</p>
+              <p class="intro">企业体检开发</p>
+            </li>
+          	<li class="cls">
+              <p class="date">8月~10月</p>
+              <p class="intro">OpenAPI开放平台长连接机制改造，平台架构调整</p>
+              <p class="version">&nbsp;</p>
+			  <div class="more">
+                <p>其次负责平台改进重构</p> 
+              </div>
+            </li>
+            <li class="cls">
+              <p class="date">6月~8月</p>
+              <p class="intro">参与OpenAPI开放平台网站开发</p>
+            </li>
+          	<li class="cls highlight">
+              <p class="date">6月12日</p>
+              <p class="intro">入职用友</p>
+              <p class="version">&nbsp;</p>
+              <div class="more">
+                <p>行业类别：互联网</p>
+				<p>部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门：OpenAPI项目部</p>
+				<p>岗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位：Java高级工程师</p>
+              </div>
+            </li>
+            <li class="cls">
+              <p class="date">5月22日</p>
+              <p class="intro">离职于普巴软件有限公司</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="year">
+        <h2><a href="#">2014年<i></i></a></h2>
+        <div class="list">
+          <ul>
+            <li class="cls">
+              <p class="date">1月~12月</p>
+              <p class="intro">平台研发与维护，客户技术支持</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+	   <div class="year">
+        <h2><a href="#">2013年<i></i></a></h2>
+        <div class="list">
+          <ul>
+            <li class="cls">
+              <p class="date">5月~7月</p>
+              <p class="intro">为项目部提供技术支持开发手机移动APP</p>
+              <p class="version">&nbsp;</p>
+			  <div class="more">
+                <p>其余时间开发快速开发平台和技术支持</p>
+              </div>
+            </li>
+           
+          </ul>
+        </div>
+      </div>
+      <div class="year">
+        <h2><a href="#">2012年<i></i></a></h2>
+        <div class="list">
+          <ul>
+		   <li class="cls">
+              <p class="date">9月</p>
+              <p class="intro">调入公司平台部</p>
+			  <p class="version">&nbsp;</p>
+			  <div class="more">
+                <p>担任平台技术支持和参与平台研发</p>
+              </div>
+            </li>
+            <li class="cls">
+              <p class="date">5月</p>
+              <p class="intro">对项目部提供技术支持</p>
+              <p class="version">&nbsp;</p>
+              <div class="more">
+                <p>参与北京交通学校网络财务管理系统开发</p>
+              </div>
+            </li>
+           
+          </ul>
+        </div>
+      </div>
+      <div class="year">
+        <h2><a href="#">2011年<i></i></a></h2>
+        <div class="list">
+          <ul>
+            <li class="cls">
+              <p class="date">12月7日</p>
+              <p class="intro">加入普巴软件有限公司</p>
+              <p class="version">&nbsp;</p>
+              <div class="more">
+                <p>行业类别：传统软件</p>
+				<p>部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门：EHR产品部</p>
+				<p>岗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位：Java开发工程师</p>
+              </div>
+            </li> 
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="javascripts/jquery-1.8.3.min.js"></script>
+<script>
+	$(".main .year .list").each(function (e, target) {
+	    var $target=  $(target),
+	        $ul = $target.find("ul");
+	    $target.height($ul.outerHeight()), $ul.css("position", "absolute");
+	}); 
+	$(".main .year>h2>a").click(function (e) {
+	    e.preventDefault();
+	    $(this).parents(".year").toggleClass("close");
+	});
+	
+	(function(){
+		var content = document.getElementById("wrapper");
+		var height = document.documentElement.clientHeight;
+		if(document.documentElement.clientHeight<400){
+			height=parent.document.documentElement.clientHeight;
+		}
+		content.style.height=height-80+"px";
+		var mode = document.documentMode;
+		if(document.addEventListener && !document.attachEvent){
+			wrapper.addEventListener('mousewheel',scrollFunc,false);
+			wrapper.addEventListener('DOMMouseScroll',scrollFunc,false); 
+		}else if(document.attachEvent && !document.addEventListener){
+			wrapper.attachEvent('onmousewheel',scrollFunc); 
+		}else{ 
+			wrapper.onmousewheel = scrollFunc; 
+		}
+		function scrollFunc(e){
+			var ev = e || window.event;
+			if(ev.wheelDelta){
+				if(ev.wheelDelta>0){
+					//向上
+					scroll(0);
+				}else{
+					//向下
+					scroll(1);
+				}	
+			}else if(ev.detail){
+				if(ev.detail>0){
+					//向下
+					scroll(1);
+				}else{
+					//向上
+					scroll(0);
+				}
+			}
+		}
+		function scroll(type){
+			if(type==1){
+				content.scrollTop=content.scrollTop+50;
+			}else if(type==0){
+				content.scrollTop=content.scrollTop-50;
+			}
+		}
+		//设置页面不能选中文字
+		if (window.document.addEventListener){
+			window.document.addEventListener("selectstart", function(){return false;}, false);
+		}else if (window.document.attachEvent){
+			window.document.attachEvent("onselectstart", function(){return false;});
+		}
+	})();
+	</script>
+</body>
+</html>

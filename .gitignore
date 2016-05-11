@@ -1,4 +1,10 @@
 /node_modules
-/public
+/public/201*
+/public/archives
+/public/fancybox
+/public/css
+/public/js
+/public/favicon.ico
+/public/index.html
 /.deploy_git
 /.project

@@ -1,0 +1,308 @@
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    border: 0 none;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: outside none none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote::before, blockquote::after, q::before, q::after {
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+body {
+    background: rgba(0, 0, 0, 0) radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190)) repeat scroll 0 0;
+    font-family: "PT Sans",sans-serif;
+    min-height: 740px;
+}
+b, strong {
+    font-weight: bold;
+}
+i, em {
+    font-style: italic;
+}
+a {
+    background: rgba(255, 255, 255, 0.5) none repeat scroll 0 0;
+    border-radius: 0.2em;
+    color: inherit;
+    padding: 0 0.1em;
+    text-decoration: none;
+    text-shadow: -1px -1px 2px rgba(100, 100, 100, 0.9);
+    transition: all 0.5s ease 0s;
+}
+a:hover, a:focus {
+    background: rgba(255, 255, 255, 1) none repeat scroll 0 0;
+    text-shadow: -1px -1px 2px rgba(100, 100, 100, 0.5);
+}
+.fallback-message {
+    background: #eedc94 none repeat scroll 0 0;
+    border: 1px solid #e4c652;
+    border-radius: 10px;
+    font-family: sans-serif;
+    line-height: 1.3;
+    margin: 20px auto;
+    padding: 10px 10px 0;
+    width: 780px;
+}
+.fallback-message p {
+    margin-bottom: 10px;
+}
+.impress-supported .fallback-message {
+    display: none;
+}
+.step {
+    box-sizing: border-box;
+    font-family: "PT Serif",georgia,serif;
+    font-size: 48px;
+    line-height: 1.5;
+    margin: 20px auto;
+    padding: 40px;
+    position: relative;
+    width: 900px;
+}
+.impress-enabled .step {
+    margin: 0;
+    opacity: 0.3;
+    transition: opacity 1s ease 0s;
+}
+.impress-enabled .step.active {
+    opacity: 1;
+}
+.slide {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    color: rgb(102, 102, 102);
+    display: block;
+    font-family: "Open Sans",Arial,sans-serif;
+    font-size: 30px;
+    height: 700px;
+    letter-spacing: -1px;
+    line-height: 36px;
+    padding: 40px 60px;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    width: 900px;
+}
+.slide q {
+    display: block;
+    font-size: 50px;
+    line-height: 72px;
+    margin-top: 100px;
+}
+.slide q strong {
+    white-space: nowrap;
+}
+#title {
+    padding: 0;
+    text-align: center;
+}
+#title .try {
+    font-size: 64px;
+    left: 1.5em;
+    position: absolute;
+    top: -0.5em;
+    transform: translateZ(20px);
+}
+#title h1 {
+    font-size: 190px;
+    transform: translateZ(50px);
+}
+#title .footnote {
+    font-size: 32px;
+}
+#welcome {
+    font-size: 40px;
+    line-height: 1;
+    text-align: center;
+    width: 800px;
+}
+#welcome .title {
+    font-size: 80px;
+    line-height: 150px;
+}
+#welcome .footnote {
+    font-size: 20px;
+}
+#tiny {
+    text-align: center;
+    width: 500px;
+}
+#me {
+    width: 600px;
+}
+#me b {
+    display: inline-block;
+    transition: all 0.5s ease 0s;
+}
+#me.present .now_me {
+    font-size: 90px;
+    transform: translateY(-10px);
+}
+#me.present .unity {
+    transform: translateY(10px);
+    transition-delay: 0.25s;
+}
+#me.present .ios {
+    transform: translateY(10px);
+    transition-delay: 0.5s;
+}
+#me.present .photo {
+    transform: translateY(10px);
+    transition-delay: 0.75s;
+}
+#whereiam {
+    width: 600px;
+}
+#whereiam .born {
+    font-size: 30px;
+    text-align: right;
+}
+#whereiam .study {
+    font-size: 30px;
+    text-align: right;
+}
+#whereiam .kunming {
+    color: green;
+}
+#whereiam .tsinghua {
+    color: purple;
+}
+#japan {
+    width: 650px;
+}
+#japan b {
+    display: inline-block;
+    transition: all 0.5s ease 0s;
+}
+#japan.present .trans {
+    transform: translateX(100px);
+    transition-delay: 0.5s;
+}
+#japan .footnote {
+    font-size: 15px;
+}
+#meet {
+    text-align: center;
+}
+#comein {
+    text-align: center;
+    width: 1000px;
+}
+#mywords {
+    text-align: center;
+    width: 1000px;
+}
+#grow {
+    text-align: center;
+}
+#knowme {
+    font-size: 45px;
+}
+#imagination {
+    width: 600px;
+}
+#imagination .imagination {
+    font-size: 78px;
+}
+#findme {
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 120px;
+    width: 900px;
+}
+#prizeme p {
+    transform-style: preserve-3d;
+}
+#prizeme span, #prizeme b {
+    display: inline-block;
+    transform: translateZ(40px);
+    transition: all 0.5s ease 0s;
+}
+#prizeme .horse {
+    transform: translateZ(-40px);
+}
+#prizeme .moutain {
+    transform: translateZ(20px);
+}
+#prizeme .hope {
+    transform: translateZ(-40px);
+}
+#prizeme .youare {
+    transform: translateZ(60px);
+}
+#prizeme .my {
+    transform: translateZ(-10px);
+}
+#prizeme.present span, #prizeme.present b {
+    transform: translateZ(0px);
+}
+#subcribe .adv {
+    font-size: 20px;
+}
+#motto {
+    text-align: center;
+}
+#motto b {
+    color: darkred;
+    font-size: 70px;
+    font-weight: bold;
+}
+#back {
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 300px;
+    width: 700px;
+}
+#overview {
+    display: none;
+}
+.impress-on-overview .step {
+    cursor: pointer;
+    opacity: 1;
+}
+.hint {
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+    bottom: 200px;
+    color: #eee;
+    display: none;
+    font-size: 50px;
+    left: 0;
+    opacity: 0;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    transform: translateY(400px);
+    transition: opacity 1s ease 0s, transform 0.5s ease 1s;
+    z-index: 100;
+}
+.impress-enabled .hint {
+    display: block;
+}
+.impress-on-welcome .hint {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: opacity 1s ease 3s, transform 0.5s ease 2.5s;
+}
+.impress-enabled {
+    pointer-events: none;
+}
+.impress-enabled #impress {
+    pointer-events: auto;
+}

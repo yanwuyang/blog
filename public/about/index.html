@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="baidu-site-verification" content="A8gpxJi9Mo" />
+	<meta name="Author" content="yanwuyang">
+    <meta name="Keywords" content="颜五洋,yanwuyang,java工程师,技术大牛,颜五洋个人主页,颜五洋简历">
+    <meta name="Description" content="颜五洋个人主页">
+	<title>Yanwuyang.GitHub.io by yanwuyang</title>
+	<link rel="stylesheet" href="stylesheets/jquery.fullPage.css">
+	<style style="text/css">
+		*{margin:0;padding:0;}
+		body { color: #eaeaea;line-height: 1.5;
+		  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+		  overflow: hidden;width: 100%;height: 100%;-moz-user-select: none;-webkit-user-select: none;
+		}
+		.container { width: 100%; height:100%;background:  url("images/bg.jpg") no-repeat scroll;}
+		.main{width:450px;position:absolute;left:30%;margin-top:200px;}
+		.head{width: 80px; height: 80px;-moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px;
+			border:2px solid #FFFFFF;background:url(images/header.jpg);float:left;transition: all 1s ease-in-out 0s;
+		}
+		.head:hover{transform: rotate(360deg);}
+		.desc{float:left;border:1px solid #999999;margin-left:20px;width:300px;
+			height:200px;
+			padding:20px 20px;
+			color:#FFFFFF;
+			background-color:#000000;
+			filter:alpha(opacity=40);
+			-moz-opacity:0.4; 
+			opacity:0.4;
+			font-size: 16px;
+			-moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius:8px;
+		}
+		.triangle-left {
+			width: 0;
+			height: 0;
+			border-top: 10px solid transparent;
+		    border-right: 20px solid #000000;
+			border-bottom: 10px solid transparent;
+			margin-top:-19px;
+			margin-left:-38px;
+			
+		}
+		.header{
+			width:100%;
+			height:130px;
+			background-color:#555555;
+			filter:alpha(opacity=50);
+			-moz-opacity:0.5; 
+			opacity:0.5;
+		}
+		.otherpages{
+			margin:0 auto;
+			width:860px;
+			overflow:hidden;
+		}
+		
+		.otherpages li{
+			list-style-type:none;
+			float:left;
+			display:block;
+			width:200px;
+			height:90px;
+			border:2px solid #FFFFFF;
+			margin:15px 5px;
+			text-align:center;
+			cursor:pointer;
+		}
+		.itemText{
+			line-height:90px;
+			font-size:20px;
+		}
+	
+		#menu { position: fixed; right: 20px; top: 50%; width: 90px; margin: -160px 0 0; padding: 0; list-style-type: none; z-index: 70;}
+		#menu li { margin-top: 10px; font: 14px "Microsoft Yahei";}
+		#menu a { display: block; padding: 10px 0; background-color: #fff; color: #0074EA; text-align: center; text-decoration: none;}
+		#menu .active a { color: #fff; background-color: rgb(0, 116, 234);}
+		.section { }
+	</style>
+  </head>
+
+ <body>
+<ul id="menu">
+	<li data-menuanchor="page1"  class="active"><a href="#page1">TOP</a></li>
+	<li data-menuanchor="page2"><a href="#page2">个人履历</a></li>
+	<li data-menuanchor="page3"><a href="#page3">项目经验</a></li>
+	<li data-menuanchor="page4"><a href="#page4">专业技术</a></li>
+	<li data-menuanchor="page5"><a href="#page5">关于我</a></li>
+	<li><a href="/">返回首页</a></li>
+</ul>
+
+ <div id="dowebok">
+ 	<div class="section">
+		<div class="container">
+			<div class="main">
+				<div class="head"></div>
+				<div class="desc" id="desc">
+					<div class="triangle-left"></div>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+	    </div>
+    </div>
+    <div class="section">
+		<iframe width="100%" height="100%" frameborder="0" scrolling="no" src="resume.html"></iframe>
+	</div>
+	<div class="section">
+		<iframe width="100%" height="100%" frameborder="0" scrolling="no" src="project.html"></iframe>
+	</div>
+	<div class="section">
+		<iframe width="100%" height="100%" frameborder="0" scrolling="no" src="technique.html"></iframe>
+	</div>
+	<div class="section">
+		<iframe width="100%" height="100%" frameborder="0" scrolling="no" src="about.html"></iframe>
+	</div>
+</div>
+<script src="javascripts/jquery-1.8.3.min.js"></script>
+<script src="javascripts/jquery.fullPage.min.js"></script>
+<script>
+$(function(){
+	$('#dowebok').fullpage({
+		sectionsColor: ['#DDDDDD','#1bbc9b', '#4BBFC3', '#7BAABE', '#D1D1D1'],
+		anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],
+		menu: '#menu'
+	});
+});
+</script>
+<script type="text/javascript">
+	(function(){
+		var arr=["hi","，","大","家","好","，","我","是","颜","五","洋","！","一","名","java","程","序","员","。","正","在","探","索","程","序","员","之","路."];
+		var index=0;
+		var timeObj;
+		var timeObj=setInterval(init,150);
+		function init(){
+			if(index==arr.length){
+				clearInterval(timeObj);
+				return;
+			}
+			var desc = document.getElementById("desc");
+			desc.innerHTML= desc.innerHTML+arr[index];
+			index++;
+		}
+		//设置页面不能选中文字
+		if (window.document.addEventListener){
+			window.document.addEventListener("selectstart", function(){return false;}, false);
+		}else if (window.document.attachEvent){
+			window.document.attachEvent("onselectstart", function(){return false;});
+		}
+	})();
+</script>
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+ </body>
+</html>
