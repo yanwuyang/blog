@@ -25,7 +25,11 @@
         <a id="nav-search-btn" class="nav-icon" title="<%= __('search') %>"></a>
       </nav>
       <div id="search-form-wrap">
-        <%- search_form({button: '&#xF002;'}) %>
+	    <%if(theme.swift_search && theme.swift_search.enable){%>
+			<input type="text" class="st-default-search-input" style="width: 110px">
+		<%}else{%>
+           <%- search_form({button: '&#xF002;'}) %>
+	    <%}%>
       </div>
     </div>
   </div>

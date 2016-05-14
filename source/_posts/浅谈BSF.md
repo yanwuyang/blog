@@ -76,7 +76,7 @@ hello world
 10
 张三
 ```
-### 脚步
+### 脚本
 *** bsf_001.js***
 ```javascript
 importPackage(java.util); 
