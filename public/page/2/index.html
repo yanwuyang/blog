@@ -64,6 +64,422 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Java开发过程中异常汇总及解决办法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/04/Java开发过程中异常汇总及解决办法/" class="article-date">
+  <time datetime="2014-09-04T13:28:01.000Z" itemprop="datePublished">2014-09-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/04/Java开发过程中异常汇总及解决办法/">Java开发过程中异常汇总及解决办法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong><em>org.apache.jasper.JasperException:Unable to initialize TldLocationsCache:null</em></strong></p>
+<p>异常详细描叙
+        
+          <p class="article-more-link">
+            <a href="/2014/09/04/Java开发过程中异常汇总及解决办法/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2014/09/04/Java开发过程中异常汇总及解决办法/" data-id="cio6vlw9500054kybnbe9t0x8" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-中间件远程调试设置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/04/中间件远程调试设置/" class="article-date">
+  <time datetime="2014-09-04T13:28:01.000Z" itemprop="datePublished">2014-09-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Eclipse/">Eclipse</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/04/中间件远程调试设置/">中间件远程调试设置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><h3 id="Jboss"><a href="#Jboss" class="headerlink" title="Jboss"></a>Jboss</h3><p>打开jboss的安装目录\bin\run.bat 使用文本编辑打开找到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_OPTS=-classic -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n</span><br></pre></td></tr></table></figure></p>
+<p>将参数<strong><em>suspend=n</em></strong> 设置为 y<br>
+        
+          <p class="article-more-link">
+            <a href="/2014/09/04/中间件远程调试设置/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2014/09/04/中间件远程调试设置/" data-id="cio6wb5w300074kyb8znepkzp" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-Oracle常用脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/30/Oracle常用脚本/" class="article-date">
+  <time datetime="2014-04-30T13:28:01.000Z" itemprop="datePublished">2014-04-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Oracle/">Oracle</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/30/Oracle常用脚本/">Oracle常用脚本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="建表空间"><a href="#建表空间" class="headerlink" title="建表空间"></a>建表空间</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">temporary</span> <span class="keyword">tablespace</span> bjjtxx_space_temp </span><br><span class="line">tempfile <span class="string">'D:/oracle/product/10.2.0/oradata/orcl/bjjtxx_temp.dbf'</span> </span><br><span class="line"><span class="keyword">size</span> <span class="number">32</span>m </span><br><span class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span> </span><br><span class="line"><span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="number">2048</span>m</span><br><span class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> bjjtxx_space</span><br><span class="line"><span class="keyword">logging</span></span><br><span class="line"><span class="keyword">datafile</span> <span class="string">'D:/oracle/product/10.2.0/oradata/orcl/bjjtxx.dbf'</span> </span><br><span class="line"><span class="keyword">size</span> <span class="number">32</span>m </span><br><span class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span> </span><br><span class="line"><span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="number">2048</span>m</span><br><span class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2014/04/30/Oracle常用脚本/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2014/04/30/Oracle常用脚本/" data-id="cio5uhgmn0001o0yb2cdt3uen" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-JavaScript常用脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/02/13/JavaScript常用脚本/" class="article-date">
+  <time datetime="2014-02-13T13:28:01.000Z" itemprop="datePublished">2014-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/02/13/JavaScript常用脚本/">JavaScript常用脚本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h2><h3 id="是否包含"><a href="#是否包含" class="headerlink" title="是否包含"></a>是否包含</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.Contains = <span class="function"><span class="keyword">function</span> (<span class="params">A</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span>.indexOf(A) &gt; <span class="number">-1</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2014/02/13/JavaScript常用脚本/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2014/02/13/JavaScript常用脚本/" data-id="cio6wm9o7000g4kybgoxb6ud8" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-Jar转exe" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/11/24/Jar转exe/" class="article-date">
+  <time datetime="2013-11-24T13:28:01.000Z" itemprop="datePublished">2013-11-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/EXE4J/">EXE4J</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/11/24/Jar转exe/">Jar转exe</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近使用exe4j将java执行文件“jar”转为“exe”执行文件收获良多。在网上有关这反面的资料还是相对比较少，尤其是通过在Eclipse中通过ANT构建那更是少之又少而且起不到实际的帮助作用。通过一晚上的研究颇有成功和心得，现在记录下来以备以后忘记也和大家一起共享下。<br>
+        
+          <p class="article-more-link">
+            <a href="/2013/11/24/Jar转exe/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2013/11/24/Jar转exe/" data-id="cio6wx4eq000i4kybsc7a3fm2" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-为什么寄存器比内存快" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/10/15/为什么寄存器比内存快/" class="article-date">
+  <time datetime="2013-10-14T16:00:00.000Z" itemprop="datePublished">2013-10-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Other/">Other</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/10/15/为什么寄存器比内存快/">为什么寄存器比内存快</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>计算机的存储层次（memory hierarchy）之中，寄存器（register）最快，内存其次，最慢的是硬盘。<br>同样都是晶体管存储设备，为什么寄存器比内存快呢？<br>Mike Ash 写了一篇很好的解释，非常通俗地回答了这个问题，有助于加深对硬件的理解。下面就是我的简单翻译。<br>
+        
+          <p class="article-more-link">
+            <a href="/2013/10/15/为什么寄存器比内存快/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2013/10/15/为什么寄存器比内存快/" data-id="cio6yuqa3000t4kybuvljn971" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-JavaScript函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/07/18/JavaScript函数/" class="article-date">
+  <time datetime="2013-07-17T16:00:00.000Z" itemprop="datePublished">2013-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/07/18/JavaScript函数/">JavaScript函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="函数概念"><a href="#函数概念" class="headerlink" title="函数概念"></a>函数概念</h2><p>函数对任何语言来说都是一个核心的概念。通过函数可以封装任何多条语句，而且可以在任何地方任何时候调用执行，ECMAScript中的函数使用function关键字来声明，后跟一组参数以及函数体。函数的基本语法如下所示<br>
+        
+          <p class="article-more-link">
+            <a href="/2013/07/18/JavaScript函数/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2013/07/18/JavaScript函数/" data-id="cio6y75io000n4kybtdpszzq7" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-JavaScript模仿块级作用域" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/07/17/JavaScript模仿块级作用域/" class="article-date">
+  <time datetime="2013-07-16T16:00:00.000Z" itemprop="datePublished">2013-07-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/07/17/JavaScript模仿块级作用域/">JavaScript模仿块级作用域</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JavaScript没有块级作用域的概念。这意味着在块语句中定义的变量，实际上是在包含函数中而非语句中创建的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ouputNumbers</span>(<span class="params">count</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;count;i++)&#123;</span><br><span class="line">                ...</span><br><span class="line">     &#125;</span><br><span class="line">     alert(i);<span class="comment">//i==count</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2013/07/17/JavaScript模仿块级作用域/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2013/07/17/JavaScript模仿块级作用域/" data-id="cio6ymvdn000p4kybophujy1n" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-JavaScript闭包" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/07/17/JavaScript闭包/" class="article-date">
+  <time datetime="2013-07-16T16:00:00.000Z" itemprop="datePublished">2013-07-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/07/17/JavaScript闭包/">JavaScript闭包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有很多开发人员总数搞不清匿名函数和闭包这两个概念，因此经常混合使用。闭包是指有权访问另一个匿名函数作用域中的变量函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createComparisonFunction</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">object1</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> object1[name];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2013/07/17/JavaScript闭包/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2013/07/17/JavaScript闭包/" data-id="cio6yq5ro000r4kybrk3l8rrx" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
     <article id="post-浅谈BSF" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/01/30/浅谈BSF/" class="article-date">
@@ -110,58 +526,10 @@
 
 
   
-    <article id="post-财务管理系统项目技术经验总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/12/03/财务管理系统项目技术经验总结/" class="article-date">
-  <time datetime="2012-12-03T13:28:01.000Z" itemprop="datePublished">2012-12-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/心得体会/">心得体会</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/03/财务管理系统项目技术经验总结/">北京交通运输职业学院网络财务管理系统项目技术经验总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>为期五个多月项目编码、测试开发到今天可以说终于告一段落了。回顾这段时间内要忠心的感谢我的领导对我的放心和支持，有了他们才使得我在这个项目中学到的更多成长的更快。 </p>
-<p>只有多总结才会成长的更快，废话少说下面还是来好好总结下这个项目中技术方面的经验心得吧。 </p>
-<p>这个项目使用的是我老大从ehr中把ehr的员工管理、用户管理、组织管理、权限管理、系统管理、角色管理、岗位管理组合成的一个平台，其实准确的讲应该还是一个SSM(struts2 spring mybatis)框架，他拥有平台的雏形，却没有平台的强大。不过他也已经为快速开发提供了很好的基础了，只有在这样的开发环境中对我来说才会学到的更多。下面就要来说说这个麻雀虽小但五脏俱全的平台了，工欲善其事必先利其器，就从开发环境说起。<br>
-        
-          <p class="article-more-link">
-            <a href="/2012/12/03/财务管理系统项目技术经验总结/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2012/12/03/财务管理系统项目技术经验总结/" data-id="cio5uhgn30005o0ybgzqolwrk" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
 </section>
         
@@ -171,7 +539,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a></li></ul>
     </div>
   </div>
 
@@ -186,7 +554,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
     </div>
   </div>
 
