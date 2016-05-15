@@ -40,3 +40,6 @@ swift_search:
     enable: true
 # Swiftype Search Key
 swiftype_key: cfMrgJ_UF1xJcNuMGgKs
+
+baidu_search:
+    enable: false

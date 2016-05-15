@@ -68,6 +68,75 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Hadoop集群完全分布式部署" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/08/Hadoop集群完全分布式部署/" class="article-date">
+  <time datetime="2015-01-08T15:45:20.000Z" itemprop="datePublished">2015-01-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Hadoop/">Hadoop</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/08/Hadoop集群完全分布式部署/">Hadoop集群完全分布式部署</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">IP</th>
+<th style="text-align:center">主机名称</th>
+<th style="text-align:center">角色</th>
+<th style="text-align:center">操作系统</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">192.168.131.129</td>
+<td style="text-align:center">HadoopMaster</td>
+<td style="text-align:center">NameNode JobTracker</td>
+<td style="text-align:center">CentOS 6.6</td>
+</tr>
+<tr>
+<td style="text-align:center">192.168.131.128</td>
+<td style="text-align:center">HadoopSlave1</td>
+<td style="text-align:center">DataNode TaskTracker</td>
+<td style="text-align:center">CentOS 6.6</td>
+</tr>
+</tbody>
+</table>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/08/Hadoop集群完全分布式部署/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2015/01/08/Hadoop集群完全分布式部署/" data-id="cio840g03000108ybi6uoaupw" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
     <article id="post-Java设计模式之观察者模式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/01/05/Java设计模式之观察者模式/" class="article-date">
@@ -103,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2015/01/05/Java设计模式之观察者模式/" data-id="cio73bvgm000gu4ybliv041ee" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2015/01/05/Java设计模式之观察者模式/" data-id="cio840g17000c08ybckrvw54v" class="article-share-link">分享</a>
       
       
     </footer>
@@ -167,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/12/10/Nginx+Tomcat集群/" data-id="cio73bvgw000qu4ybkoa3fx9v" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/12/10/Nginx+Tomcat集群/" data-id="cio840g1r000p08yb1xurwig6" class="article-share-link">分享</a>
       
       
     </footer>
@@ -213,54 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/10/08/虚拟机联网方式设置/" data-id="cio73bvh60013u4ybll46erpr" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-中间件远程调试设置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/09/04/中间件远程调试设置/" class="article-date">
-  <time datetime="2014-09-04T13:28:01.000Z" itemprop="datePublished">2014-09-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Eclipse/">Eclipse</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/04/中间件远程调试设置/">中间件远程调试设置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><h3 id="Jboss"><a href="#Jboss" class="headerlink" title="Jboss"></a>Jboss</h3><p>打开jboss的安装目录\bin\run.bat 使用文本编辑打开找到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_OPTS=-classic -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n</span><br></pre></td></tr></table></figure></p>
-<p>将参数<strong><em>suspend=n</em></strong> 设置为 y<br>
-        
-          <p class="article-more-link">
-            <a href="/2014/09/04/中间件远程调试设置/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/09/04/中间件远程调试设置/" data-id="cio73bvh6000wu4ybn4hae41n" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/10/08/虚拟机联网方式设置/" data-id="cio840g2b001608ybp6pm7mov" class="article-share-link">分享</a>
       
       
     </footer>
@@ -307,7 +329,54 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/09/04/Java开发过程中异常汇总及解决办法/" data-id="cio73bvgc000bu4ybouszp9y9" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/09/04/Java开发过程中异常汇总及解决办法/" data-id="cio840g0x000708ybe0nbf5ir" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-中间件远程调试设置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/04/中间件远程调试设置/" class="article-date">
+  <time datetime="2014-09-04T13:28:01.000Z" itemprop="datePublished">2014-09-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Eclipse/">Eclipse</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/09/04/中间件远程调试设置/">中间件远程调试设置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><h3 id="Jboss"><a href="#Jboss" class="headerlink" title="Jboss"></a>Jboss</h3><p>打开jboss的安装目录\bin\run.bat 使用文本编辑打开找到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set JAVA_OPTS=-classic -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n</span><br></pre></td></tr></table></figure></p>
+<p>将参数<strong><em>suspend=n</em></strong> 设置为 y<br>
+        
+          <p class="article-more-link">
+            <a href="/2014/09/04/中间件远程调试设置/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2014/09/04/中间件远程调试设置/" data-id="cio840g21000w08ybbwx64tr5" class="article-share-link">分享</a>
       
       
     </footer>
@@ -353,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/04/30/Oracle常用脚本/" data-id="cio73bvgw000uu4ybkcv8j0zg" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/04/30/Oracle常用脚本/" data-id="cio840g21000s08ybfz746jg0" class="article-share-link">分享</a>
       
       
     </footer>
@@ -399,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/02/13/JavaScript常用脚本/" data-id="cio73bvfi0003u4ybmy88gy87" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/02/13/JavaScript常用脚本/" data-id="cio840g0x000508ybwyto75c4" class="article-share-link">分享</a>
       
       
     </footer>
@@ -445,7 +514,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2013/11/24/Jar转exe/" data-id="cio73bvfs0004u4ybffowvz4f" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2013/11/24/Jar转exe/" data-id="cio840fzt000008yb73maekjt" class="article-share-link">分享</a>
       
       
     </footer>
@@ -491,53 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2013/10/15/为什么寄存器比内存快/" data-id="cio73bvh6000zu4yba2s72rg9" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-JavaScript函数" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/07/18/JavaScript函数/" class="article-date">
-  <time datetime="2013-07-17T16:00:00.000Z" itemprop="datePublished">2013-07-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/07/18/JavaScript函数/">JavaScript函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="函数概念"><a href="#函数概念" class="headerlink" title="函数概念"></a>函数概念</h2><p>函数对任何语言来说都是一个核心的概念。通过函数可以封装任何多条语句，而且可以在任何地方任何时候调用执行，ECMAScript中的函数使用function关键字来声明，后跟一组参数以及函数体。函数的基本语法如下所示<br>
-        
-          <p class="article-more-link">
-            <a href="/2013/07/18/JavaScript函数/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2013/07/18/JavaScript函数/" data-id="cio73bvfi0001u4yb20ivzyry" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2013/10/15/为什么寄存器比内存快/" data-id="cio840g21001208ybor5tu7t7" class="article-share-link">分享</a>
       
       
     </footer>
@@ -561,7 +584,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a></li></ul>
     </div>
   </div>
 
@@ -576,7 +599,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
     </div>
   </div>
 
@@ -605,7 +628,7 @@
           </li>
         
           <li>
-            <a href="/2015/07/27/MySQL+Keepalived实现双机热备/">MySQL+Keepalived实现双机热备</a>
+            <a href="/2015/11/03/企业体检开发框架培训/">企业体检开发框架培训</a>
           </li>
         
       </ul>
@@ -625,13 +648,15 @@
     </div>
   </div>
 </footer>
-<script type="text/javascript">
-(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+ 
+	<script type="text/javascript">
+	(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+	(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+	e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+	})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
 
-_st('install','cfMrgJ_UF1xJcNuMGgKs','2.0.0');
+	_st('install','cfMrgJ_UF1xJcNuMGgKs','2.0.0');
+  
 </script>
             
     </div>
