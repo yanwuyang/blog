@@ -68,6 +68,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Oracle常用脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/30/Oracle常用脚本/" class="article-date">
+  <time datetime="2014-04-30T13:28:01.000Z" itemprop="datePublished">2014-04-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Oracle/">Oracle</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/04/30/Oracle常用脚本/">Oracle常用脚本</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="建表空间"><a href="#建表空间" class="headerlink" title="建表空间"></a>建表空间</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">temporary</span> <span class="keyword">tablespace</span> bjjtxx_space_temp </span><br><span class="line">tempfile <span class="string">'D:/oracle/product/10.2.0/oradata/orcl/bjjtxx_temp.dbf'</span> </span><br><span class="line"><span class="keyword">size</span> <span class="number">32</span>m </span><br><span class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span> </span><br><span class="line"><span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="number">2048</span>m</span><br><span class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> bjjtxx_space</span><br><span class="line"><span class="keyword">logging</span></span><br><span class="line"><span class="keyword">datafile</span> <span class="string">'D:/oracle/product/10.2.0/oradata/orcl/bjjtxx.dbf'</span> </span><br><span class="line"><span class="keyword">size</span> <span class="number">32</span>m </span><br><span class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span> </span><br><span class="line"><span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="number">2048</span>m</span><br><span class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2014/04/30/Oracle常用脚本/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2014/04/30/Oracle常用脚本/" data-id="ciobk41zt000rx8yb43rsq2x6" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
     <article id="post-JavaScript常用脚本" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/02/13/JavaScript常用脚本/" class="article-date">
@@ -103,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/02/13/JavaScript常用脚本/" data-id="cioa4limz000f3syb7xo42l72" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/02/13/JavaScript常用脚本/" data-id="ciobk41yf0004x8ybqzqyxbp0" class="article-share-link">分享</a>
       
       
     </footer>
@@ -149,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2013/11/24/Jar转exe/" data-id="cioa4lin9000m3syb1k2i0c2j" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2013/11/24/Jar转exe/" data-id="ciobk41xv0001x8ybnmidbk2v" class="article-share-link">分享</a>
       
       
     </footer>
@@ -195,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2013/10/15/为什么寄存器比内存快/" data-id="cioa4liot001d3syb5vstmkhq" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2013/10/15/为什么寄存器比内存快/" data-id="ciobk4203000wx8ybprheyvgq" class="article-share-link">分享</a>
       
       
     </footer>
@@ -241,53 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2013/07/18/JavaScript函数/" data-id="cioa4lim700043syb2b03v93v" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-JavaScript模仿块级作用域" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/07/17/JavaScript模仿块级作用域/" class="article-date">
-  <time datetime="2013-07-16T16:00:00.000Z" itemprop="datePublished">2013-07-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/07/17/JavaScript模仿块级作用域/">JavaScript模仿块级作用域</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>JavaScript没有块级作用域的概念。这意味着在块语句中定义的变量，实际上是在包含函数中而非语句中创建的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ouputNumbers</span>(<span class="params">count</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;count;i++)&#123;</span><br><span class="line">                ...</span><br><span class="line">     &#125;</span><br><span class="line">     alert(i);<span class="comment">//i==count</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/2013/07/17/JavaScript模仿块级作用域/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2013/07/17/JavaScript模仿块级作用域/" data-id="cioa4limu000b3sybzh0o5dj6" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2013/07/18/JavaScript函数/" data-id="ciobk41yf0003x8yb52s80aeu" class="article-share-link">分享</a>
       
       
     </footer>
@@ -333,7 +333,53 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2013/07/17/JavaScript闭包/" data-id="cioa4linb000p3sybhe0f5vsd" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2013/07/17/JavaScript闭包/" data-id="ciobk41yp0007x8ybocnn1efz" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-JavaScript模仿块级作用域" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/07/17/JavaScript模仿块级作用域/" class="article-date">
+  <time datetime="2013-07-16T16:00:00.000Z" itemprop="datePublished">2013-07-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/07/17/JavaScript模仿块级作用域/">JavaScript模仿块级作用域</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JavaScript没有块级作用域的概念。这意味着在块语句中定义的变量，实际上是在包含函数中而非语句中创建的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ouputNumbers</span>(<span class="params">count</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;count;i++)&#123;</span><br><span class="line">                ...</span><br><span class="line">     &#125;</span><br><span class="line">     alert(i);<span class="comment">//i==count</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2013/07/17/JavaScript模仿块级作用域/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2013/07/17/JavaScript模仿块级作用域/" data-id="ciobk41yp0005x8ybe3ew6hh9" class="article-share-link">分享</a>
       
       
     </footer>
@@ -379,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2013/01/30/浅谈BSF/" data-id="cioa4lioj00193sybyicjkczt" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2013/01/30/浅谈BSF/" data-id="ciobk420d0014x8ybaitgcgmz" class="article-share-link">分享</a>
       
       
     </footer>
@@ -427,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2012/12/03/财务管理系统项目技术经验总结/" data-id="cioa4lipq001q3sybsgtxigz0" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2012/12/03/财务管理系统项目技术经验总结/" data-id="ciobk420n001cx8ybzdwnl45q" class="article-share-link">分享</a>
       
       
     </footer>
@@ -479,6 +525,10 @@
       <ul>
         
           <li>
+            <a href="/2016/05/17/漫谈工程师的三观/">漫谈工程师的三观</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/16/构建单页Web应用/">构建单页Web应用</a>
           </li>
         
@@ -492,10 +542,6 @@
         
           <li>
             <a href="/2016/05/11/JavaScript面向对象编程/">JavaScript面向对象编程</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/10/System.setOut/">System.setOut</a>
           </li>
         
       </ul>
