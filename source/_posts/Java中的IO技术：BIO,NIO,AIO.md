@@ -2,7 +2,7 @@
 title: Java中的IO技术：BIO,NIO,AIO
 date: 2016-08-10
 comments: true
-categories: java
+categories: Java
 toc: true
 ---
 
