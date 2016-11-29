@@ -27,7 +27,7 @@
 			margin: 0 auto;
 			max-width: 1000px;
 			overflow: hidden;
-			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.06);
 		}
 		/*case*/
 
@@ -105,16 +105,64 @@
 			<div class="main case">
 				<div id="tabMain">
 					<ul>
-						<li class="cur">普巴快速开发平台</li>
+						<li class="cur">U费控</li>
+						<li>企业体检</li>
+						<li>OpenAPI开放平台</li>
+						<li>普巴快速开发平台</li>
 						<li>民丰薯业移动APP</li>
 						<li>北京交通学校网络财务管理系统</li>
 						<li>EHR产品</li>
-						<li>OpenAPI开放平台</li>
-						<li>企业体检</li>
-						<li>U费控</li>
 					</ul>
 					<div class="container">
 						<div class="content cur">
+							<h3>U费控</h3>
+							<p style="text-align: center;"><a href="http://ufk.yonyouup.com/" target="_blank"><img src="images/logo_ufk.png"></a></p>
+							<section class="postContent">
+								<p>项目地址：<a href="http://ufk.yonyouup.com/" target="_blank">http://ufk.yonyouup.com/</a></p>
+								<p>项目描述：用友出品，集U8费用管控15年经验，让企业享受真正的费用管控。Saas架构，云端部署，三大平台PC、Android、IOS，注册即可使用。U费控通过<a href="http://open.yonyouup.com/" target="_blank">OpenAPI（优普开发平台）</a>与用友U8无缝对接，用户可以自由选择是否绑定U8。企业通过U8系统对年度进行费用预算，员工进行报销的时候严格按照预算控制，从而有效的实现了企业费用预算的控制。此项目由企业设置、档案维护、填报、审批、出纳、凭证处理、查询、报表8大模块组成，</p>
+								<p>开发工具：eclipse</p>
+								<p>项目职责：</p>
+								<p>1、分布式Saas架构方案确定与搭建，高可用缓存机制处理与实现，前台js、css、图片压缩与合并一键部署
+								   <br/>2、开发基于angularjs 附近批量上传图片预览、流程图等组件。
+								   <br/>3、角色、权限、日常报销填报、查询、审批、报表等具体功能模块实现。
+								</p>
+							</section>
+						</div>
+						
+						<div class="content">
+							<h3>企业体检</h3>
+							<br>
+							<p style="text-align: center;"><a href="http://open.yonyouup.com:84/medical" target="_blank"><img src="images/logo_medical.jpg" style="width:50px;height:50px"></a></p>
+							<section class="postContent">
+								<p>项目地址：<a href="http://open.yonyouup.com:84/medical" target="_blank">http://open.yonyouup.com:84/medical</a></p>
+								<p>项目描述：企业体检中心是用友优普信息技术有限公司提供的官方应用，包括盈利状况分析和信息化水平分析。盈利状况分析通过商品盈利状况评价模型对企业进行分析。EVA分析通过EVA模型对企业进行分析。资金状况分析通过资金状况评价模型对企业进行分析。信息化水平分析通过信息化水平评估模型对企业进行分析。关于两个模型的介绍，参见功能介绍页面。</p>
+								<p>开发工具：eclipse</p>
+								<p>项目职责：</p>
+								<p>1、系统开发框架搭建
+								   <br/>2、盈利状况分析、EVA分析、资金状况分析实现
+								   <br/>3、后台数据缓存处理
+								</p>
+							</section>
+						</div>
+						
+						<div class="content">
+							<h3>OpenAPI开放平台</h3>
+							<p style="text-align: center;"><a href="http://open.yonyouup.com/" target="_blank"><img src="images/logo_openapi.png"></a></p>
+							<section class="postContent">
+								<p>项目地址：<a href="http://open.yonyouup.com/" target="_blank">http://open.yonyouup.com/</a></p>
+								<p>项目描述： 用友优普开放平台是用友基于用友大量的企业用户和U8的开放接口，接入外部合作伙伴，为企业用户提供丰富应用和完善服务的开发平台。通过云加端的模式，企业无需开放公有IP即可对外开放API，帮助企业加速互联网化。平台API基于HTTP协议，遵循Restful风格。不限语言，实现真正的开放。平台内提供安全的沙箱测试帮助开发者直观快速的了解API调用机制，掌握API调用机制
+								</p>
+								<p>使用技术：SpringMVC、MyBatis、AngularJs、Redis、Mongodb、Netty</p>
+								<p>项目职责：</p>
+								<p>1、基于Netty搭建消息路由引擎。实现客户端与APIServer长连接。保障数据在高并发下快速安全的传输
+								   <br/>2、开发消息路由监控，监控客户端的连接个数与API的调用次数以及系统性能各项参数，通过监控数据了解系统的压力及时的做出应对策略、
+								   <br/>3、负责APIServer整体开发，通过Spring的AOP技术实现对API权限验证数据进行缓存降低API接口调用响应时间，保证系统在高并发下24*7高可用
+								   <br/>4、开发JAVA版的SDK方便开发者调用接口
+								   <br/>5、采用Jenkins实现系统持续集成
+								</p>
+							</section>
+						</div>
+						<div class="content">
 							<h3>普巴快速开发平台</h3>
 							<p style="text-align: center;"><img src="images/chx.jpg"></p>
 							<section class="postContent">
@@ -175,52 +223,6 @@
 								<p>1、负责用户管理、系统管理、薪资管理部分模块的功能实现
 								<br/>2、在期间参与系统的交叉测试
 									</p>
-							</section>
-						</div>
-						<div class="content">
-							<h3>OpenAPI开放平台</h3>
-							<p style="text-align: center;"><a href="http://open.yonyouup.com/" target="_blank"><img src="images/logo_openapi.png"></a></p>
-							<section class="postContent">
-								<p>项目地址：<a href="http://open.yonyouup.com/" target="_blank">http://open.yonyouup.com/</a></p>
-								<p>项目描述： 用友优普开放平台（open.yonyouup.com）是基于用友优普大量的企业用户和U8的开放接口 ，接入外部合作伙伴，为企业用户提供丰富应用和完善服务的开放平台。通过端加云的模式，企业无需开放公有IP即可对外开放API，帮助企业加速互联网化。
-								</p>
-								<p>开发工具：eclipse</p>
-								<p>项目职责：</p>
-								<p>1、API调用权限校验引擎实现
-								   <br/>2、客户端与网关高可用长连接实现
-								   <br/>3、常用数据缓存机制的实现
-								</p>
-							</section>
-						</div>
-						
-						<div class="content">
-							<h3>企业体检</h3>
-							<br>
-							<p style="text-align: center;"><a href="http://open.yonyouup.com:84/medical" target="_blank"><img src="images/logo_medical.jpg" style="width:50px;height:50px"></a></p>
-							<section class="postContent">
-								<p>项目地址：<a href="http://open.yonyouup.com:84/medical" target="_blank">http://open.yonyouup.com:84/medical</a></p>
-								<p>项目描述：企业体检中心是用友优普信息技术有限公司提供的官方应用，包括盈利状况分析和信息化水平分析。盈利状况分析通过商品盈利状况评价模型对企业进行分析。EVA分析通过EVA模型对企业进行分析。资金状况分析通过资金状况评价模型对企业进行分析。信息化水平分析通过信息化水平评估模型对企业进行分析。关于两个模型的介绍，参见功能介绍页面。</p>
-								<p>开发工具：eclipse</p>
-								<p>项目职责：</p>
-								<p>1、系统开发框架搭建
-								   <br/>2、盈利状况分析、EVA分析、资金状况分析实现
-								   <br/>3、后台数据缓存处理
-								</p>
-							</section>
-						</div>
-						
-						<div class="content">
-							<h3>U费控</h3>
-							<p style="text-align: center;"><a href="http://ufk.yonyouup.com/" target="_blank"><img src="images/logo_ufk.png"></a></p>
-							<section class="postContent">
-								<p>项目地址：<a href="http://ufk.yonyouup.com/" target="_blank">http://ufk.yonyouup.com/</a></p>
-								<p>项目描述：用友出品，集U8费用管控15年经验，让企业享受真正的费用管控。Saas架构，云端部署，三大平台PC、Android、IOS，注册即可使用。U费控通过<a href="http://open.yonyouup.com/" target="_blank">OpenAPI（优普开发平台）</a>与用友U8无缝对接，用户可以自由选择是否绑定U8。企业通过U8系统对年度进行费用预算，员工进行报销的时候严格按照预算控制，从而有效的实现了企业费用预算的控制。此项目由企业设置、档案维护、填报、审批、出纳、凭证处理、查询、报表8大模块组成，</p>
-								<p>开发工具：eclipse</p>
-								<p>项目职责：</p>
-								<p>1、分布式Saas架构方案确定与搭建，高可用缓存机制处理与实现，前台js、css、图片压缩与合并一键部署
-								   <br/>2、开发基于angularjs 附近批量上传图片预览、流程图等组件。
-								   <br/>3、角色、权限、日常报销填报、查询、审批、报表等具体功能模块实现。
-								</p>
 							</section>
 						</div>
 					</div>
