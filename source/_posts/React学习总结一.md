@@ -1,6 +1,6 @@
 ---
 title: React学习总结一
-date: 2016-12-29
+date: 2016-11-29
 comments: true
 categories: JavaScript
 toc: true 

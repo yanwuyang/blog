@@ -37,7 +37,7 @@ fb_admins:
 fb_app_id:
 
 swift_search:
-    enable: true
+    enable: false
 # Swiftype Search Key
 swiftype_key: cfMrgJ_UF1xJcNuMGgKs
 
