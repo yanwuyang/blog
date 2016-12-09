@@ -44,8 +44,9 @@ connect(mapStateToProps)(Users);
 //控制台输出
 function name:Users
 ```
-
+这种定义方法叫做**“柯里化”**函数，是指把接受多个参数的函数变换成接受一个单一参数(最初函数的第一个参数)的函数，并且返回接受余下的参数且返回结果的新函数的技术。这个技术由 Christopher Strachey 以逻辑学家 Haskell Curry 命名的，尽管它是 Moses Schnfinkel 和 Gottlob Frege 发明的。
 **箭头函数**
+- 
 ```javascript
 //ES6写法
 ()=>{
