@@ -6,6 +6,7 @@ categories: JavaScript
 toc: false 
 ---
 
+**Redux是一个通用Javscript App模块，用做App State的管理。**
 1、React有props和state: props意味着父级分发下来的属性，state意味着组件内部可以自行管理的状态，并且整个React没有数据向上回溯的能力，也就是说数据只能单向向下分发，或者自行内部消化。
 2、一般构建的React组件内部可能是一个完整的应用，它自己工作良好，你可以通过属性作为API控制它。但是更多的时候发现React根本无法让两个组件互相交流，使用对方的数据。
 然后这时候不通过DOM沟通（也就是React体制内）解决的唯一办法就是提升state，将state放到共有的父组件中来管理，再作为props分发回子组件。
@@ -23,22 +24,11 @@ toc: false
 - b. **reducer**是一个匹配函数，action的发送是全局的：所有的reducer都可以捕捉到并匹配与自己相关与否，相关就拿走action中的要素进行逻辑处理，修改store中的状态，不相关就不对state做处理原样返回。
 - c. **store**负责存储状态并可以被react api回调，发布action.
 
-当然一般不会直接把两个库拿来用，还有一个binding叫react-redux, 提供一个Provider和connect。很多人其实看懂了redux卡在这里。
-- a. **Provider**是一个普通组件，可以作为顶层app的分发点，它只需要store属性就可以了。它会将state分发给所有被connect的组件，不管它在哪里，被嵌套多少层。
-- b. **connect**是真正的重点，它是一个柯里化函数，意思是先接受两个参数（数据绑定mapStateToProps和事件绑定mapDispatchToProps），再接受一个参数（将要绑定的组件本身）：
-
-**mapStateToProps：**构建好Redux系统的时候，它会被自动初始化，但是你的React组件并不知道它的存在，因此你需要分拣出你需要的Redux状态，所以你需要绑定一个函数，它的参数是state，简单返回你关心的几个值。
-**mapDispatchToProps：**声明好的action作为回调，也可以被注入到组件里，就是通过这个函数，它的参数是dispatch，通过redux的辅助方法bindActionCreator绑定所有action以及参数的dispatch，就可以作为属性在组件里面作为函数简单使用了，不需要手动dispatch。这个mapDispatchToProps是可选的，如果不传这个参数redux会简单把dispatch作为属性注入给组件，可以手动当做store.dispatch使用。这也是为什么要科里化的原因。
-
-做好以上流程Redux和React就可以工作了。简单地说就是：
-1.顶层分发状态，让React组件被动地渲染。
-2.监听事件，事件有权利回到所有状态顶层影响状态。
-
 下面是redux github中提供的代码样例
 - 
 ```javascript
 import { createStore } from 'redux'
-
+// 这是一个reducer函数
 function counter(state = 0, action) {
   switch (action.type) {
   case 'INCREMENT':
@@ -64,3 +54,4 @@ store.dispatch({ type: 'INCREMENT' })
 store.dispatch({ type: 'DECREMENT' })
 // 1
 ```
+这种设计模式采用观察者模式，让多个观察者对象同时监听某一个主题对象。这个主题对象在状态发生变化时，会通知所有观察者对象，使它们能够自动更新自己。
