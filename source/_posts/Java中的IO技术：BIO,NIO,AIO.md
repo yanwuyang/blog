@@ -82,17 +82,25 @@ public class PlainEchoServer {
         final Socket clientSocket = socket.accept();
         System.out.println("Accepted connection from " + clientSocket);
         //Create new thread to handle client connection
+        //KeepAlive 设置为true表示保持长连接Socket 底层会定期发送心跳包检查连接是否中断。
+        clientSocket.setKeepAlive(true);
+        //设置超过指定时间没有数据可读的时候read立即返回并抛出异常SocketTimeoutException
+        socket.setSoTimeout(1000);
         new Thread(new Runnable() {
           @Override
           public void run() {
             try {
-              BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-              PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
-              //Read data from client and write it back
-              while (true) {
-                writer.println(reader.readLine());
-                writer.flush();
-              }
+                while(true){
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
+                    //Read data from client and write it back
+                    //如果此时没有数据可读将一直阻塞在read函数上除非设置socket.setSoTimeout()，
+                    //超过过期时间抛出异常SocketTimeoutException
+                    while (true) {
+                      writer.println(reader.readLine());
+                      writer.flush();
+                    }
+                }
             } catch (IOException e) {
               e.printStackTrace();
               try {
