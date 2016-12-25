@@ -73,17 +73,48 @@ public class NettyServer{
 第七步：option（）用于接受传入连接的NioServerSocketChannel， childOption（）用于父NioServerSocketChannel接受的通道的设置
 第八步：绑定端口启动服务器。这里，我们绑定到机器中所有NIC（网络接口卡）的端口8080。 您现在可以根据需要多次调用bind（）方法（使用不同的绑定地址）。
 
-**注意：ServerBootstrap的配置中带有child的如（childHandler、childOption）是针对处理读取的NioSocketChanel的配置 ，不带的（如option）是针对NioServerSocketChannel的配置**
+**注意：ServerBootstrap的配置中带有child的如（childHandler、childOption）是针对处理数据读取的NioSocketChanel的配置 ，不带的（如option）是针对NioServerSocketChannel的配置**
 
 ## 流程解读
 Server端bind（绑定端口）从bossGroup NioEventLoopGroup线程池中按顺序从0开始获取一个NioEventLoop，如果已经超过了线程大小将又从0开始。
 ```java
 public abstract class AbstractBootstrap{
+    private ChannelFuture doBind(final SocketAddress localAddress) {
+        //初始并注册
+        final ChannelFuture regFuture = initAndRegister();
+    }
+
     final ChannelFuture initAndRegister() {
+        Channel channel = channelFactory.newChannel();
+        //初始化通道NioServerSocketChannel
+        init(channel);
+        //在Select中注册channel并添加OP_ACCEPT事件
         ChannelFuture regFuture = config().group().register(channel);
     }
 }
 
+public class ServerBootstrap extends AbstractBootstrap{
+    void init(Channel channel){
+        ChannelPipeline p = channel.pipeline();
+        p.addLast(new ChannelInitializer<Channel>() {
+            @Override
+            public void initChannel(Channel ch) throws Exception {
+                final ChannelPipeline pipeline = ch.pipeline();
+                ChannelHandler handler = config.handler();
+                if (handler != null) {
+                    pipeline.addLast(handler);
+                }
+                ch.eventLoop().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        pipeline.addLast(new ServerBootstrapAcceptor(
+                        currentChildGroup, currentChildHandler, currentChildOptions, currentChildAttrs));
+                    }
+                });
+            }
+        });
+    }
+}
 
 public abstract class MultithreadEventLoopGroup{
     @Override
@@ -95,7 +126,7 @@ public abstract class MultithreadEventLoopGroup{
     public EventLoop next() {
 	    return (EventLoop) super.next();
     }
-
+	//调用选择管理器的next方法返回一个EventExecutor
     @Override
     public EventExecutor next() {
 	    return chooser.next();
@@ -103,6 +134,7 @@ public abstract class MultithreadEventLoopGroup{
 }
 
 private static final class GenericEventExecutorChooser{
+    //选择管理器next方法中通过idx.getAndIncrement()原子函数记录已经获取的次数通过%（摩）计算下标并返回EventExecutor
     @Override
     public EventExecutor next() {
 	    return executors[Math.abs(idx.getAndIncrement() % executors.length)];
