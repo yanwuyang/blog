@@ -142,6 +142,17 @@ abstract class AbstractChannelHandlerContext extends DefaultAttributeMap impleme
                 }
             });
         }
+    }
+    private void invokeChannelRead(Object msg) {
+        if (invokeHandler()) {
+            try {
+                ((ChannelInboundHandler) handler()).channelRead(this, msg);
+            } catch (Throwable t) {
+                notifyHandlerException(t);
+            }
+        } else {
+            fireChannelRead(msg);
+        }
     }	
 }
 ```
