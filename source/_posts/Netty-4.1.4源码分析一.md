@@ -69,7 +69,7 @@ public class NettyServer{
 ```
 第一步：实例化bossGroup NioEventLoopGroup用于接受处理来自客户端的连接请求
 第二步：实例化workerGroup NioEventLoopGroup用于接受来处理自客户端的数据读写请求
-第三步：实例化一个设置服务器的助手类，对netty运行环境一个基础配置
+第三步：实例化一个设置服务器的助手类，对netty运行环境一个基础配置,串联起各个组件
 第四步：使用NioServerSocketChannel类，用于实例化新的通道以接受传入连接。
 第五步：指定的处理程序将始终由新接受的通道计算 。ChannelInitializer是一个特殊的处理程序，用于帮助用户配置新的通道。很可能要通过添加一些处理程序（例如DiscardServerHandler）来配置新频道的ChannelPipeline来实现您的网络应用程序
 第六步：设置通道选项参数如tcpNoDelay和keepAlive
