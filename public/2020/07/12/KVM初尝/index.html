@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>KVM初尝 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="虚拟化技术的含义很广泛。将任何一种形式的资源抽象成另一种形式的技术都是虚拟化。在常用的操作系统中就存在某种意义上的“虚拟化技术”，例如虚拟内存空间和进程。如果把内存看作是一个设备，虚拟内存就是将物理内存虚拟成多个内存空间。虚拟内存的容量可以少于或多于物理内存。进程的概念实际是对于物理硬件执行环境的一个抽象，每个进程都享有一个完整的硬件执行环境，并且与其他进程相隔离。相对于进程级的虚拟化，虚拟机是另">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVM初尝">
+<meta property="og:url" content="http://yanwuyang.github.io/2020/07/12/KVM初尝/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="虚拟化技术的含义很广泛。将任何一种形式的资源抽象成另一种形式的技术都是虚拟化。在常用的操作系统中就存在某种意义上的“虚拟化技术”，例如虚拟内存空间和进程。如果把内存看作是一个设备，虚拟内存就是将物理内存虚拟成多个内存空间。虚拟内存的容量可以少于或多于物理内存。进程的概念实际是对于物理硬件执行环境的一个抽象，每个进程都享有一个完整的硬件执行环境，并且与其他进程相隔离。相对于进程级的虚拟化，虚拟机是另">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-06-30T08:14:16.013Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KVM初尝">
+<meta name="twitter:description" content="虚拟化技术的含义很广泛。将任何一种形式的资源抽象成另一种形式的技术都是虚拟化。在常用的操作系统中就存在某种意义上的“虚拟化技术”，例如虚拟内存空间和进程。如果把内存看作是一个设备，虚拟内存就是将物理内存虚拟成多个内存空间。虚拟内存的容量可以少于或多于物理内存。进程的概念实际是对于物理硬件执行环境的一个抽象，每个进程都享有一个完整的硬件执行环境，并且与其他进程相隔离。相对于进程级的虚拟化，虚拟机是另">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">实践是最好的成长，发表是最好的记忆</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+	    
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-KVM初尝" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/12/KVM初尝/" class="article-date">
+  <time datetime="2020-07-12T14:48:20.000Z" itemprop="datePublished">2020-07-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/虚拟化/">虚拟化</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      KVM初尝
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+        <p>虚拟化技术的含义很广泛。将任何一种形式的资源抽象成另一种形式的技术都是虚拟化。在常用的操作系统中就存在某种意义上的“虚拟化技术”，例如虚拟内存空间和进程。如果把内存看作是一个设备，虚拟内存就是将物理内存虚拟成多个内存空间。虚拟内存的容量可以少于或多于物理内存。进程的概念实际是对于物理硬件执行环境的一个抽象，每个进程都享有一个完整的硬件执行环境，并且与其他进程相隔离。<br>相对于进程级的虚拟化，虚拟机是另外一个层面的虚拟化，即系统级虚拟化。与虚拟单个进程的执行环境所不同，系统级虚拟化所抽象的环境是整个计算机，其抽象出的环境称为虚拟机，包括CPU、内存和I/O。在每个虚拟机中都可以运行一个操作系统，在一台计算机上可以虚拟出多个虚拟机。</p>
+<p><a href="https://www.bookstack.cn/read/learn-kvm/docs-KVM%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-KVM%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md" target="_blank" rel="noopener">KVM内核模块源码分析</a><br><a id="more"></a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;err.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kvm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/ioctl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> kvm, vmfd, vcpufd, ret;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">uint8_t</span> code[] = &#123;</span><br><span class="line">        <span class="number">0xba</span>, <span class="number">0xf8</span>, <span class="number">0x03</span>, <span class="comment">/* mov $0x3f8, %dx */</span></span><br><span class="line">        <span class="number">0x00</span>, <span class="number">0xd8</span>,       <span class="comment">/* add %bl, %al */</span></span><br><span class="line">        <span class="number">0x04</span>, <span class="string">'0'</span>,        <span class="comment">/* add $'0', %al */</span></span><br><span class="line">        <span class="number">0xee</span>,             <span class="comment">/* out %al, (%dx) */</span></span><br><span class="line">        <span class="number">0xb0</span>, <span class="string">'\n'</span>,       <span class="comment">/* mov $'\n', %al */</span></span><br><span class="line">        <span class="number">0xee</span>,             <span class="comment">/* out %al, (%dx) */</span></span><br><span class="line">        <span class="number">0xf4</span>,             <span class="comment">/* hlt */</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">uint8_t</span> *mem;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">kvm_sregs</span> <span class="title">sregs</span>;</span></span><br><span class="line">    <span class="keyword">size_t</span> mmap_size;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">kvm_run</span> *<span class="title">run</span>;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 获取 kvm 句柄</span></span><br><span class="line">    kvm = open(<span class="string">"/dev/kvm"</span>, O_RDWR | O_CLOEXEC);</span><br><span class="line">    <span class="keyword">if</span> (kvm == <span class="number">-1</span>)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"/dev/kvm"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 确保是正确的 API 版本</span></span><br><span class="line">    ret = ioctl(kvm, KVM_GET_API_VERSION, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"KVM_GET_API_VERSION"</span>);</span><br><span class="line">    <span class="keyword">if</span> (ret != <span class="number">12</span>)</span><br><span class="line">        errx(<span class="number">1</span>, <span class="string">"KVM_GET_API_VERSION %d, expected 12"</span>, ret);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建一虚拟机</span></span><br><span class="line">    vmfd = ioctl(kvm, KVM_CREATE_VM, (<span class="keyword">unsigned</span> <span class="keyword">long</span>)<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (vmfd == <span class="number">-1</span>)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"KVM_CREATE_VM"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 为这个虚拟机申请内存，并将代码（镜像）加载到虚拟机内存中</span></span><br><span class="line">    mem = mmap(<span class="literal">NULL</span>, <span class="number">0x1000</span>, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, <span class="number">-1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (!mem)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"allocating guest memory"</span>);</span><br><span class="line">    <span class="built_in">memcpy</span>(mem, code, <span class="keyword">sizeof</span>(code));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为什么从 0x1000 开始呢，因为页表空间的前4K是留给页表目录</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">kvm_userspace_memory_region</span> <span class="title">region</span> = &#123;</span></span><br><span class="line">        .slot = <span class="number">0</span>,</span><br><span class="line">        .guest_phys_addr = <span class="number">0x1000</span>,</span><br><span class="line">        .memory_size = <span class="number">0x1000</span>,</span><br><span class="line">        .userspace_addr = (<span class="keyword">uint64_t</span>)mem,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// 设置 KVM 的内存区域</span></span><br><span class="line">    ret = ioctl(vmfd, KVM_SET_USER_MEMORY_REGION, &amp;region);</span><br><span class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"KVM_SET_USER_MEMORY_REGION"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建虚拟CPU</span></span><br><span class="line">    vcpufd = ioctl(vmfd, KVM_CREATE_VCPU, (<span class="keyword">unsigned</span> <span class="keyword">long</span>)<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (vcpufd == <span class="number">-1</span>)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"KVM_CREATE_VCPU"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取 KVM 运行时结构的大小</span></span><br><span class="line">    ret = ioctl(kvm, KVM_GET_VCPU_MMAP_SIZE, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"KVM_GET_VCPU_MMAP_SIZE"</span>);</span><br><span class="line">    mmap_size = ret;</span><br><span class="line">    <span class="keyword">if</span> (mmap_size &lt; <span class="keyword">sizeof</span>(*run))</span><br><span class="line">        errx(<span class="number">1</span>, <span class="string">"KVM_GET_VCPU_MMAP_SIZE unexpectedly small"</span>);</span><br><span class="line">    <span class="comment">// 将 kvm run 与 vcpu 做关联，这样能够获取到kvm的运行时信息</span></span><br><span class="line">    run = mmap(<span class="literal">NULL</span>, mmap_size, PROT_READ | PROT_WRITE, MAP_SHARED, vcpufd, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (!run)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"mmap vcpu"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取特殊寄存器</span></span><br><span class="line">    ret = ioctl(vcpufd, KVM_GET_SREGS, &amp;sregs);</span><br><span class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"KVM_GET_SREGS"</span>);</span><br><span class="line">    <span class="comment">// 设置代码段为从地址0处开始，我们的代码被加载到了0x0000的起始位置</span></span><br><span class="line">    sregs.cs.base = <span class="number">0</span>;</span><br><span class="line">    sregs.cs.selector = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// KVM_SET_SREGS 设置特殊寄存器</span></span><br><span class="line">    ret = ioctl(vcpufd, KVM_SET_SREGS, &amp;sregs);</span><br><span class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"KVM_SET_SREGS"</span>);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 设置代码的入口地址，相当于32位main函数的地址，这里16位汇编都是由0x1000处开始。</span></span><br><span class="line">    <span class="comment">// 如果是正式的镜像，那么rip的值应该是类似引导扇区加载进来的指令</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">kvm_regs</span> <span class="title">regs</span> = &#123;</span></span><br><span class="line">        .rip = <span class="number">0x1000</span>,</span><br><span class="line">        .rax = <span class="number">2</span>,    <span class="comment">// 设置 ax 寄存器初始值为 2</span></span><br><span class="line">        .rbx = <span class="number">2</span>,    <span class="comment">// 同理</span></span><br><span class="line">        .rflags = <span class="number">0x2</span>,   <span class="comment">// 初始化flags寄存器，x86架构下需要设置，否则会粗错</span></span><br><span class="line">    &#125;;</span><br><span class="line">    ret = ioctl(vcpufd, KVM_SET_REGS, &amp;regs);</span><br><span class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>)</span><br><span class="line">        err(<span class="number">1</span>, <span class="string">"KVM_SET_REGS"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 开始运行虚拟机，如果是qemu-kvm，会用一个线程来执行这个vCPU，并加载指令</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="comment">// 开始运行虚拟机</span></span><br><span class="line">        ret = ioctl(vcpufd, KVM_RUN, <span class="literal">NULL</span>);</span><br><span class="line">        <span class="keyword">if</span> (ret == <span class="number">-1</span>)</span><br><span class="line">            err(<span class="number">1</span>, <span class="string">"KVM_RUN"</span>);</span><br><span class="line">        <span class="comment">// 获取虚拟机退出原因</span></span><br><span class="line">        <span class="keyword">switch</span> (run-&gt;exit_reason) &#123;</span><br><span class="line">        <span class="keyword">case</span> KVM_EXIT_HLT:</span><br><span class="line">            <span class="built_in">puts</span>(<span class="string">"KVM_EXIT_HLT"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 汇编调用了 out 指令，vmx 模式下不允许执行这个操作，所以</span></span><br><span class="line">        <span class="comment">// 将操作权切换到了宿主机，切换的时候会将上下文保存到VMCS寄存器</span></span><br><span class="line">        <span class="comment">// 后面CPU虚拟化会讲到这部分</span></span><br><span class="line">        <span class="comment">// 因为虚拟机的内存宿主机能够直接读取到，所以直接在宿主机上获取到</span></span><br><span class="line">        <span class="comment">// 虚拟机的输出（out指令），这也是后面PCI设备虚拟化的一个基础，DMA模式的PCI设备</span></span><br><span class="line">        <span class="keyword">case</span> KVM_EXIT_IO:</span><br><span class="line">            <span class="keyword">if</span> (run-&gt;io.direction == KVM_EXIT_IO_OUT &amp;&amp; run-&gt;io.size == <span class="number">1</span> &amp;&amp; run-&gt;io.port == <span class="number">0x3f8</span> &amp;&amp; run-&gt;io.count == <span class="number">1</span>)</span><br><span class="line">                <span class="built_in">putchar</span>(*(((<span class="keyword">char</span> *)run) + run-&gt;io.data_offset));</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                errx(<span class="number">1</span>, <span class="string">"unhandled KVM_EXIT_IO"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> KVM_EXIT_FAIL_ENTRY:</span><br><span class="line">            errx(<span class="number">1</span>, <span class="string">"KVM_EXIT_FAIL_ENTRY: hardware_entry_failure_reason = 0x%llx"</span>,</span><br><span class="line">                 (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)run-&gt;fail_entry.hardware_entry_failure_reason);</span><br><span class="line">        <span class="keyword">case</span> KVM_EXIT_INTERNAL_ERROR:</span><br><span class="line">            errx(<span class="number">1</span>, <span class="string">"KVM_EXIT_INTERNAL_ERROR: suberror = 0x%x"</span>, run-&gt;internal.suberror);</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            errx(<span class="number">1</span>, <span class="string">"exit_reason = 0x%x"</span>, run-&gt;exit_reason);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2020/07/12/KVM初尝/" data-id="ckqjatol90012qkl5c3ocz4k4" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/10/20/编写一个简单的操作系统/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          编写一个简单的操作系统——从头开始
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/16/Java并发编程-线程饥饿死锁/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java并发编程-线程饥饿死锁</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-KVM初尝" data-title="KVM初尝" data-url="http://yanwuyang.github.io/2020/07/12/KVM初尝/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/虚拟化/">虚拟化</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/10/JVMTI随记/">JVMTI随记</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/27/调试JVM/">调试JVM</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/20/100个为什么/">100个为什么</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/10/APIC编程/">APIC编程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/20/编写一个简单的操作系统/">编写一个简单的操作系统——从头开始</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>

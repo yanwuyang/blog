@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>APIC编程 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="APIC（高级可编程中断控制器）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="APIC编程">
+<meta property="og:url" content="http://yanwuyang.github.io/2021/03/10/APIC编程/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="APIC（高级可编程中断控制器）">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-06-30T08:07:36.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="APIC编程">
+<meta name="twitter:description" content="APIC（高级可编程中断控制器）">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">实践是最好的成长，发表是最好的记忆</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+	    
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-APIC编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/10/APIC编程/" class="article-date">
+  <time datetime="2021-03-10T01:30:21.000Z" itemprop="datePublished">2021-03-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/操作系统/">操作系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      APIC编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+        <p>APIC（高级可编程中断控制器）<br><a id="more"></a></p>
+<h3 id="smp-boot-asm"><a href="#smp-boot-asm" class="headerlink" title="smp_boot.asm"></a>smp_boot.asm</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[org 0x7c00]</span><br><span class="line">ICR_LOW         equ     0x0FEE00300</span><br><span class="line">SVR     	equ     0x0FEE000F0</span><br><span class="line">LVT1		equ	0x0FEE00350</span><br><span class="line">LVT2		equ	0x0FEE00360</span><br><span class="line">APIC_ENABLED	equ	0x000000100</span><br><span class="line">APIC_ID	        equ     0x0FEE00020</span><br><span class="line">COUNT           equ     0x0</span><br><span class="line"></span><br><span class="line">start:</span><br><span class="line">   mov al,0x80</span><br><span class="line">   out 0x70,al</span><br><span class="line"></span><br><span class="line">   in al,0x21</span><br><span class="line">   push ax</span><br><span class="line">   mov al,0xff</span><br><span class="line">   out 0x21,al</span><br><span class="line">   in al,0xa1</span><br><span class="line">   push ax</span><br><span class="line">   mov al,0xff</span><br><span class="line">   out 0xa1,al           ;屏蔽PIC</span><br><span class="line"></span><br><span class="line">   call setup_gdt</span><br><span class="line"></span><br><span class="line">   mov eax,cr0</span><br><span class="line">   or eax,0x1</span><br><span class="line">   mov cr0,eax</span><br><span class="line">  </span><br><span class="line">   jmp code_cs:pm</span><br><span class="line"></span><br><span class="line">setup_gdt:</span><br><span class="line">  lgdt [gdt_descr]</span><br><span class="line">  ret</span><br><span class="line"></span><br><span class="line">gdt:</span><br><span class="line">gdt_null:</span><br><span class="line">  dd 0x0</span><br><span class="line">  dd 0x0</span><br><span class="line"></span><br><span class="line">gdt_code:</span><br><span class="line">    dw 0xffff                   ;limit(bits 0-15)</span><br><span class="line">    dw 0x0                      ;基址(bits 0-15)</span><br><span class="line">    db 0x0                      ;基址(bits 16-23)</span><br><span class="line">    db 10011010b                ;1st flags,type flags</span><br><span class="line">    db 11001111b                ;2nd flags,Limit(bits 16-19)</span><br><span class="line">    db 0x0                      ;基址(bits 24-31)</span><br><span class="line"></span><br><span class="line">gdt_data:</span><br><span class="line">    dw 0xffff</span><br><span class="line">    dw 0x0</span><br><span class="line">    db 0x0</span><br><span class="line">    db 10010010b</span><br><span class="line">    db 11001111b</span><br><span class="line">    db 0x0</span><br><span class="line"></span><br><span class="line">gdt_end:</span><br><span class="line">gdt_descr:</span><br><span class="line">    dw gdt_end-gdt-1</span><br><span class="line">    dd gdt</span><br><span class="line"></span><br><span class="line">code_cs equ gdt_code-gdt</span><br><span class="line">data_ds equ gdt_data-gdt</span><br><span class="line"></span><br><span class="line">ap_init:</span><br><span class="line">   jmp $</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[bits 32]</span><br><span class="line">pm:  </span><br><span class="line">   mov ax,data_ds</span><br><span class="line">   mov ds,ax</span><br><span class="line">   mov ss,ax</span><br><span class="line">   mov es,ax</span><br><span class="line">   mov fs,ax</span><br><span class="line">   mov gs,ax</span><br><span class="line"></span><br><span class="line">   call initLocalAPIC</span><br><span class="line">   jmp $</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">initLocalAPIC:</span><br><span class="line">   mov esi,APIC_ID</span><br><span class="line">   mov eax,[esi]</span><br><span class="line">   and eax,0xff000000</span><br><span class="line">   mov [BOOT_ID],eax</span><br><span class="line"></span><br><span class="line">   ;通过设置一个8bit的APIC虚拟向量寄存器开启本地APIC</span><br><span class="line">   mov esi,SVR</span><br><span class="line">   mov eax,[esi]                   ;read SVR(spurious vector register)</span><br><span class="line">   and eax,0xFFFFFF0F              ;清空虚拟向量寄存器  </span><br><span class="line">   or eax,APIC_ENABLED             ;bit 8=1</span><br><span class="line">   mov [esi],eax                   ;write SVR</span><br><span class="line"></span><br><span class="line">   ;将LVT1编程为ExtInt ,他将信号传递给所有处理的INTR信号</span><br><span class="line">   mov esi,LVT1</span><br><span class="line">   mov eax,[esi]</span><br><span class="line">   and eax,0xFFFE00FF</span><br><span class="line">   or  eax,0x00005700          ;ExtInt</span><br><span class="line">   mov [esi],eax</span><br><span class="line"></span><br><span class="line">   ;将LVT2编程为NMI</span><br><span class="line">   mov esi,LVT2</span><br><span class="line">   mov eax,[esi]</span><br><span class="line">   and eax,0xFFFE00FF</span><br><span class="line">   or  eax,0x00005400           ;NMI</span><br><span class="line">   mov [esi],eax</span><br><span class="line"></span><br><span class="line">   ;广播一个INIT-SIPI-SIPI IPI序列，来唤醒AP进行初始化</span><br><span class="line">   ;加载中断控制寄存器地址到esi    </span><br><span class="line">   mov esi,ICR_LOW</span><br><span class="line">   mov eax,0xc4500               ;广播 init ipi到所有AP</span><br><span class="line">   mov [esi],eax</span><br><span class="line">   dw 0x00eb,0x00eb              ;等待10毫秒</span><br><span class="line">   </span><br><span class="line">   ;mov edx,ap_init   </span><br><span class="line">   mov eax,0x00c4600               ;广播SIPI API到所有AP  00 4K字节页中的AP启动代码基地址转换为8bit的向量</span><br><span class="line">   ;add eax,edx</span><br><span class="line">   mov [esi],eax</span><br><span class="line">   mov [esi],eax</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">   ret</span><br><span class="line"></span><br><span class="line">BOOT_ID dd 0x0</span><br><span class="line">times 510-($-$$) db 0</span><br><span class="line">dw 0xaa55</span><br></pre></td></tr></table></figure>
+<h3 id="构建脚本"><a href="#构建脚本" class="headerlink" title="构建脚本"></a>构建脚本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nasm smp_boot.asm  -f bin -o smp_boot.bin</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2021/03/10/APIC编程/" data-id="ckqjatojy0003qkl50mqgbwwa" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/20/100个为什么/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          100个为什么
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/20/编写一个简单的操作系统/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">编写一个简单的操作系统——从头开始</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-APIC编程" data-title="APIC编程" data-url="http://yanwuyang.github.io/2021/03/10/APIC编程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/虚拟化/">虚拟化</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/10/JVMTI随记/">JVMTI随记</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/27/调试JVM/">调试JVM</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/20/100个为什么/">100个为什么</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/10/APIC编程/">APIC编程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/20/编写一个简单的操作系统/">编写一个简单的操作系统——从头开始</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>JVMTI随记 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JVM工具接口（JVM TI）是供工具使用的本机编程接口。它提供了一种检查状态和控制Java虚拟机中运行的应用程序执行的方法。JVMTI支持需要访问JVM状态的各种工具。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVMTI随记">
+<meta property="og:url" content="http://yanwuyang.github.io/2021/04/10/JVMTI随记/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="JVM工具接口（JVM TI）是供工具使用的本机编程接口。它提供了一种检查状态和控制Java虚拟机中运行的应用程序执行的方法。JVMTI支持需要访问JVM状态的各种工具。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-06-30T07:49:02.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVMTI随记">
+<meta name="twitter:description" content="JVM工具接口（JVM TI）是供工具使用的本机编程接口。它提供了一种检查状态和控制Java虚拟机中运行的应用程序执行的方法。JVMTI支持需要访问JVM状态的各种工具。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">实践是最好的成长，发表是最好的记忆</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+	    
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JVMTI随记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/04/10/JVMTI随记/" class="article-date">
+  <time datetime="2021-04-10T14:48:20.000Z" itemprop="datePublished">2021-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JVM/">JVM</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVMTI随记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+        <p>JVM工具接口（JVM TI）是供工具使用的本机编程接口。它提供了一种检查状态和控制Java虚拟机中运行的应用程序执行的方法。JVMTI支持需要访问JVM状态的各种工具。</p>
+<a id="more"></a>
+<h3 id="jvmti-ext-ex-cpp"><a href="#jvmti-ext-ex-cpp" class="headerlink" title="jvmti_ext_ex.cpp"></a>jvmti_ext_ex.cpp</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jvmti.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printStackTrace</span><span class="params">(JNIEnv* env, jobject exception)</span> </span>&#123;</span><br><span class="line">	jclass throwable_class = (*env).FindClass(<span class="string">"java/lang/Throwable"</span>);</span><br><span class="line">	jmethodID print_method = (*env).GetMethodID(throwable_class, <span class="string">"printStackTrace"</span>, <span class="string">"()V"</span>);</span><br><span class="line">	(*env).CallVoidMethod(exception, print_method);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">notify</span><span class="params">(JNIEnv* env)</span></span>&#123;</span><br><span class="line">       jclass notify_class = env-&gt;FindClass(<span class="string">"Demo"</span>);</span><br><span class="line">       jmethodID notify_method = env-&gt;GetStaticMethodID(notify_class, <span class="string">"jvm_notify"</span>, <span class="string">"()V"</span>);</span><br><span class="line">       env-&gt;CallStaticObjectMethod(notify_class,notify_method);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printLocalVar</span><span class="params">(jvmtiEnv *jvmti,JNIEnv* env, jthread thread, jmethodID method,jobject obj)</span></span>&#123;</span><br><span class="line">      jint max_ptr;</span><br><span class="line">      jvmtiError error= jvmti-&gt;GetMaxLocals(method,&amp;max_ptr);</span><br><span class="line">      <span class="keyword">if</span>(error != JVMTI_ERROR_NONE) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"ERROR: Unable to GetMaxLocals JVMTI"</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">     <span class="comment">// char *method_name;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//printf("loclasMax:%d\n",max_ptr);</span></span><br><span class="line">      jint entry_count_ptr;</span><br><span class="line">      jvmtiLocalVariableEntry *table_ptr;</span><br><span class="line">      error = jvmti-&gt;GetLocalVariableTable(method,&amp;entry_count_ptr,&amp;table_ptr);</span><br><span class="line">      <span class="keyword">if</span>(error != JVMTI_ERROR_NONE) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"ERROR: Unable to GetLocalVariableTable JVMTI error %d \n"</span>,error);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">     <span class="comment">// printf("entry_count_ptr:%d\n",entry_count_ptr); </span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;entry_count_ptr;i++)&#123;</span><br><span class="line">         <span class="comment">//printf("name:%s slot:%d\n",table_ptr-&gt;name,table_ptr-&gt;slot);</span></span><br><span class="line">         jint value_ptr;</span><br><span class="line">         jvmti-&gt;GetLocalInt(thread,<span class="number">0</span>,i,&amp;value_ptr);</span><br><span class="line">         <span class="built_in">printf</span>(<span class="string">"name:%s slot:%d value %d\n"</span>,table_ptr-&gt;name,table_ptr-&gt;slot,value_ptr);</span><br><span class="line">         table_ptr++;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *thread 发生异常的线程</span></span><br><span class="line"><span class="comment"> *method 发生异常的方法</span></span><br><span class="line"><span class="comment"> *location 发生异常的位置</span></span><br><span class="line"><span class="comment"> *exception 发生的异常</span></span><br><span class="line"><span class="comment"> *catch_method 捕获异常的方法 如果没有catch 则为null</span></span><br><span class="line"><span class="comment"> *catch_location 捕获异常的位置 如果没有catch 则为0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> JNICALL <span class="title">Callback_JVMTI_EVENT_EXCEPTION</span> <span class="params">(jvmtiEnv *jvmti_env,</span></span></span><br><span class="line"><span class="function"><span class="params">	JNIEnv* jni_env,</span></span></span><br><span class="line"><span class="function"><span class="params">	jthread thread,</span></span></span><br><span class="line"><span class="function"><span class="params">	jmethodID method,</span></span></span><br><span class="line"><span class="function"><span class="params">	jlocation location,</span></span></span><br><span class="line"><span class="function"><span class="params">	jobject exception,</span></span></span><br><span class="line"><span class="function"><span class="params">	jmethodID catch_method,</span></span></span><br><span class="line"><span class="function"><span class="params">	jlocation catch_location)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//printf("loaded class name=%s\n ", "run in Callback_JVMTI_EVENT_EXCEPTION method");</span></span><br><span class="line">        <span class="keyword">char</span>* class_name;</span><br><span class="line">        jclass exception_class = jni_env-&gt;GetObjectClass(exception);</span><br><span class="line">        jvmti_env-&gt;GetClassSignature(exception_class, &amp;class_name, <span class="literal">NULL</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Exception: %s %ld %ld\n"</span>, class_name,location,catch_location);	</span><br><span class="line">        printStackTrace(jni_env, exception);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">strcmp</span>(class_name,<span class="string">"Ljava/lang/ClassNotFoundException;"</span>)</span><br><span class="line">            &amp;&amp; <span class="built_in">strcmp</span>(class_name,<span class="string">"Ljava/lang/NoSuchFieldError;"</span>)</span><br><span class="line">            &amp;&amp; <span class="built_in">strcmp</span>(class_name,<span class="string">"Ljava/lang/NoSuchMethodException;"</span>))&#123;</span><br><span class="line">             notify(jni_env);</span><br><span class="line">             printLocalVar(jvmti_env,jni_env,thread,method,exception);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> JNICALL <span class="title">Callback_JVMTI_EVENT_EXCEPTIONCATCH</span><span class="params">(jvmtiEnv *jvmti_env,</span></span></span><br><span class="line"><span class="function"><span class="params">            JNIEnv* jni_env,</span></span></span><br><span class="line"><span class="function"><span class="params">            jthread thread,</span></span></span><br><span class="line"><span class="function"><span class="params">            jmethodID method,</span></span></span><br><span class="line"><span class="function"><span class="params">            jlocation location,</span></span></span><br><span class="line"><span class="function"><span class="params">            jobject exception)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span>* class_name;</span><br><span class="line">        jclass exception_class = jni_env-&gt;GetObjectClass(exception);</span><br><span class="line">        jvmti_env-&gt;GetClassSignature(exception_class, &amp;class_name, <span class="literal">NULL</span>);</span><br><span class="line">       <span class="comment">//printf("Exception: %s %ld\n", class_name,location);</span></span><br><span class="line">       <span class="comment">//printStackTrace(jni_env, exception);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> JNICALL <span class="title">Callback_JVMTI_EVENT_METHODENTRY</span><span class="params">(jvmtiEnv *jvmti_env,</span></span></span><br><span class="line"><span class="function"><span class="params">            JNIEnv* jni_env,</span></span></span><br><span class="line"><span class="function"><span class="params">            jthread thread,</span></span></span><br><span class="line"><span class="function"><span class="params">            jmethodID method)</span></span>&#123;</span><br><span class="line">       <span class="comment">//printf("method entry;");</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> JNICALL <span class="title">Callback_JVMTI_EVENT_METHODEXIT</span><span class="params">(jvmtiEnv *jvmti_env,</span></span></span><br><span class="line"><span class="function"><span class="params">            JNIEnv* jni_env,</span></span></span><br><span class="line"><span class="function"><span class="params">            jthread thread,</span></span></span><br><span class="line"><span class="function"><span class="params">            jmethodID method,</span></span></span><br><span class="line"><span class="function"><span class="params">            jboolean was_popped_by_exception,</span></span></span><br><span class="line"><span class="function"><span class="params">            jvalue return_value)</span></span>&#123;</span><br><span class="line">      <span class="comment">//printf("method exit;");</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">JNIEXPORT jint JNICALL <span class="title">Agent_OnLoad</span><span class="params">(JavaVM *vm, <span class="keyword">char</span> *options, <span class="keyword">void</span> *reserved)</span></span>&#123;</span><br><span class="line">   <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"agent onload\n"</span>); </span><br><span class="line">   jvmtiEnv *jvmti = <span class="literal">NULL</span>;</span><br><span class="line">   <span class="comment">//获取JVMTI environment</span></span><br><span class="line">   jint erno = vm-&gt;GetEnv((<span class="keyword">void</span> **)&amp;jvmti, JVMTI_VERSION_1_1);</span><br><span class="line">   <span class="keyword">if</span> (erno != JNI_OK) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"ERROR: Couldn't get JVMTI environment"</span>);</span><br><span class="line">        <span class="keyword">return</span> JNI_ERR;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//注册功能</span></span><br><span class="line">   jvmtiCapabilities capabilities;</span><br><span class="line">   (<span class="keyword">void</span>)<span class="built_in">memset</span>(&amp;capabilities, <span class="number">0</span>, <span class="keyword">sizeof</span>(jvmtiCapabilities));</span><br><span class="line">   capabilities.can_generate_exception_events=<span class="number">1</span>;</span><br><span class="line">   capabilities.can_access_local_variables = <span class="number">1</span>;</span><br><span class="line">   capabilities.can_generate_method_entry_events=<span class="number">1</span>;</span><br><span class="line">   capabilities.can_generate_method_exit_events=<span class="number">1</span>;</span><br><span class="line">   </span><br><span class="line">   jvmtiError error = jvmti-&gt;AddCapabilities(&amp;capabilities);</span><br><span class="line">   <span class="keyword">if</span>(error != JVMTI_ERROR_NONE) &#123;</span><br><span class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"ERROR: Unable to AddCapabilities JVMTI"</span>);</span><br><span class="line">	<span class="keyword">return</span>  error;</span><br><span class="line">   &#125; </span><br><span class="line">   <span class="comment">//设置JVM事件 (JVMTI_EVENT_EXCEPTION) 回调</span></span><br><span class="line">   jvmtiEventCallbacks ex_callbacks;</span><br><span class="line">   ex_callbacks.Exception = &amp;Callback_JVMTI_EVENT_EXCEPTION;</span><br><span class="line">   ex_callbacks.ExceptionCatch = &amp;Callback_JVMTI_EVENT_EXCEPTIONCATCH;</span><br><span class="line">   ex_callbacks.MethodEntry = &amp;Callback_JVMTI_EVENT_METHODENTRY;</span><br><span class="line">   ex_callbacks.MethodExit = &amp;Callback_JVMTI_EVENT_METHODEXIT;</span><br><span class="line">   error = jvmti-&gt;SetEventCallbacks(&amp;ex_callbacks, (jint)<span class="keyword">sizeof</span>(ex_callbacks));</span><br><span class="line">   <span class="keyword">if</span>(error != JVMTI_ERROR_NONE) &#123;</span><br><span class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"ERROR: Unable to SetEventCallbacks JVMTI!"</span>);		</span><br><span class="line">	<span class="keyword">return</span> error;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//设置事件通知</span></span><br><span class="line">   error = jvmti-&gt;SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_EXCEPTION, (jthread)<span class="literal">NULL</span>);</span><br><span class="line">   error = jvmti-&gt;SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_EXCEPTION_CATCH, (jthread)<span class="literal">NULL</span>);</span><br><span class="line">   error = jvmti-&gt;SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_METHOD_EXIT, (jthread)<span class="literal">NULL</span>);</span><br><span class="line">   error = jvmti-&gt;SetEventNotificationMode(JVMTI_ENABLE, JVMTI_EVENT_METHOD_ENTRY, (jthread)<span class="literal">NULL</span>);</span><br><span class="line">   <span class="keyword">if</span>(error != JVMTI_ERROR_NONE) &#123;</span><br><span class="line">	<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">" ERROR: Unable to SetEventNotificationMode JVMTI!,the error code=%d"</span>,error);</span><br><span class="line">	<span class="keyword">return</span>  error;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">return</span> JNI_OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">JNIEXPORT <span class="keyword">void</span> JNICALL <span class="title">Agent_OnUnload</span><span class="params">(JavaVM *vm)</span></span>&#123;</span><br><span class="line">   <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>,<span class="string">"agent onUnload\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="build-sh"><a href="#build-sh" class="headerlink" title="build.sh"></a>build.sh</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line">BASE_HOME=`pwd`</span><br><span class="line">INCLUDES="-I/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64/include -I/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64/include/linux"</span><br><span class="line">g++ $BASE_HOME/jvmti_ext_ex.cpp $INCLUDES -Wall -Wno-deprecated -fPIC --share -o $BASE_HOME/jvmti_ext_ex.so</span><br></pre></td></tr></table></figure>
+<h3 id="Demo-java"><a href="#Demo-java" class="headerlink" title="Demo.java"></a>Demo.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">     </span><br><span class="line">      System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">      <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">      <span class="keyword">try</span>&#123;</span><br><span class="line">         i=<span class="number">100</span>/i;</span><br><span class="line">      &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">    </span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line">         msg(<span class="number">1</span>);</span><br><span class="line">      &#125;).start();</span><br><span class="line">    </span><br><span class="line">      <span class="comment">// msg(10);</span></span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">msg</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">   &#125;</span><br><span class="line">  </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">error</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">      i++;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException();</span><br><span class="line">   &#125;</span><br><span class="line">  </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">jvm_notify</span><span class="params">()</span></span>&#123;</span><br><span class="line">       System.out.println(<span class="string">"notify"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="run-sh"><a href="#run-sh" class="headerlink" title="run.sh"></a>run.sh</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line"></span><br><span class="line">java -agentpath:jvmti_ext_ex.so  Demo</span><br><span class="line"><span class="meta">#</span>java -agentlib:hprof=cpu=samples,interval=1,depth=3 Demo</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2021/04/10/JVMTI随记/" data-id="ckqjatokn000bqkl53rpjb7ze" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/27/调试JVM/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">调试JVM</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-JVMTI随记" data-title="JVMTI随记" data-url="http://yanwuyang.github.io/2021/04/10/JVMTI随记/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/虚拟化/">虚拟化</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/10/JVMTI随记/">JVMTI随记</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/27/调试JVM/">调试JVM</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/20/100个为什么/">100个为什么</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/10/APIC编程/">APIC编程</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/20/编写一个简单的操作系统/">编写一个简单的操作系统——从头开始</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>
